@@ -23,8 +23,6 @@
 
 import numpy as np
 from scipy.io import wavfile
-from scipy.io import flac
-from scipy.io import ogg
 from scipy import signal
 from scipy.fftpack import dct
 from scipy.io.wavfile import write
@@ -53,10 +51,6 @@ def read(audio_file, sr=None):
     # Call different read functions depending on the file extension
     if file_ext == 'wav':
         sr, audio_signal = wavfile.read(audio_file)
-    elif file_ext == 'flac':
-        audio_signal, sr = flac.read(audio_file)
-    elif file_ext == 'ogg':
-        audio_signal, sr = ogg.read(audio_file)
     else:
         raise ValueError(f"Unsupported audio file format: {file_ext}")
 
