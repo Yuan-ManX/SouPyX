@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-"""Install soupy."""
+"""Install SouPy."""
 
 __doc__ = """
 SouPy: An Audio Exploration Space.
@@ -33,12 +33,12 @@ import sys
 import setuptools
 
 # To enable importing version.py directly, we add its path to sys.path.
-version_path = os.path.join(os.path.dirname(__file__), 'soupy')
+version_path = os.path.join(os.path.dirname(__file__), 'SouPy')
 sys.path.append(version_path)
-from soupy import __version__  
+from SouPy import __version__  
 
 setuptools.setup(
-    name='soupy',
+    name='SouPy',
     version=__version__,
     description='Sound Python Library',
     author='Yuan Man',

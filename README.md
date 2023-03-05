@@ -20,7 +20,7 @@ In summary, SouPy is a comprehensive and rich audio exploration platform for res
 To install the project, use the following command:
 
 ```python
-pip install soupy
+pip install SouPy
 ```
 
 ## Quick Start
@@ -30,7 +30,7 @@ First, follow the steps in the Installation section to install the SouPy package
 * Audio Processing
 
 ```python
-import soupy as sp
+import SouPy as sp
 
 # audio read
 audio_file_path = 'audio_file.wav'
@@ -48,7 +48,7 @@ sp.core.audio_format_conversion(input_file, output_format)
 * Oscillator、Filter、Display
 
 ```python
-import soupy as sp
+import SouPy as sp
 
 # Generate a triangle wave with a frequency of 440Hz for 1 second
 waveform = sp.synths.oscillator(freq=440, duration=1, type='triangle')
