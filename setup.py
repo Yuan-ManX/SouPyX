@@ -21,11 +21,11 @@
 # SOFTWARE.
 
 
-"""Install SouPy."""
+"""Install SouPyX."""
 
 __doc__ = """
 SouPy: An Audio Exploration Space.
-See the README file for details, usage info, and a list of gotchas.
+See the README file for details, usage info, and a list of feature.
 """
 
 import os
@@ -53,8 +53,7 @@ setuptools.setup(
         'sklearn',
         'torch',
         'matplotlib',
-        'mido',
-        'subprocess'
+        'mido'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',
