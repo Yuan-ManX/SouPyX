@@ -17,7 +17,7 @@ SouPy还可用于AI音频音乐等方面的研究，通过使用神经网络模�
 要安装项目，请使用以下命令：
 
 ```python
-pip install SouPy
+pip install SouPy-X
 ```
 
 ## 快速开始
@@ -27,7 +27,7 @@ pip install SouPy
 * 音频处理
 
 ```python
-import SouPy as sp
+import SouPy-X as sp
 
 # 音频读取
 audio_file_path = 'audio_file.wav'
@@ -46,7 +46,7 @@ sp.core.audio_format_conversion(input_file, output_format)
 * 振荡器、滤波器、波形图
 
 ```python
-import SouPy as sp
+import SouPy-X as sp
 
 # 振荡器
 waveform = sp.synths.oscillator(freq=440, duration=1, type='triangle')
