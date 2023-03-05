@@ -21,15 +21,15 @@
 # SOFTWARE.
 
 
-import SouPy as sp
+import SouPyX as spx
 
 audio_file_path = 'audio_file.wav'
-sr, audio_data = sp.core.read(audio_file_path, sr=44100)
+sr, audio_data = spx.core.read(audio_file_path, sr=44100)
 
 # audio to midi
-midi = sp.core.audio_to_midi(audio_data)
+midi = spx.core.audio_to_midi(audio_data)
 
 # audio conversion
 input_file = 'input.wav'
 output_format = 'mp3'
-sp.core.audio_format_conversion(input_file, output_format)
+spx.core.audio_format_conversion(input_file, output_format)

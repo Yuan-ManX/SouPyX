@@ -30,38 +30,38 @@ First, follow the steps in the Installation section to install the SouPyX packag
 * Audio Processing
 
 ```python
-import SouPyX as sp
+import SouPyX as spx
 
 # audio read
 audio_file_path = 'audio_file.wav'
-sr, audio_data = sp.core.read(audio_file_path, sr=44100)
+sr, audio_data = spx.core.read(audio_file_path, sr=44100)
 
 # audio to midi
-midi = sp.core.audio_to_midi(audio_data)
+midi = spx.core.audio_to_midi(audio_data)
 
 # audio conversion
 input_file = 'input.wav'
 output_format = 'mp3'
-sp.core.audio_format_conversion(input_file, output_format)
+spx.core.audio_format_conversion(input_file, output_format)
 ```
 
 * Oscillator、Filter、Display
 
 ```python
-import SouPyX as sp
+import SouPyX as spx
 
 # Generate a triangle wave with a frequency of 440Hz for 1 second
-waveform = sp.synths.oscillator(freq=440, duration=1, type='triangle')
+waveform = spx.synths.oscillator(freq=440, duration=1, type='triangle')
 
 # filter
 cutoff_freq = 2000
 fs=44100
 filter_type='lowpass'
-filtered_audio = sp.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
+filtered_audio = spx.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
 
 # display
-sp.display.waveform(waveform)
-sp.display.waveform(filtered_audio)
+spx.display.waveform(waveform)
+spx.display.waveform(filtered_audio)
 
 print(waveform)
 print(filtered_audio)

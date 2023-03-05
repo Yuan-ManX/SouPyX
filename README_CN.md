@@ -27,39 +27,39 @@ pip install SouPyX
 * 音频处理
 
 ```python
-import SouPyX as sp
+import SouPyX as spx
 
 # 音频读取
 audio_file_path = 'audio_file.wav'
-sr, audio_data = sp.core.read(audio_file_path, sr=44100)
+sr, audio_data = spx.core.read(audio_file_path, sr=44100)
 
 # 音频文件转为MIDI文件
-midi = sp.core.audio_to_midi(audio_data)
+midi = spx.core.audio_to_midi(audio_data)
 
 # 音频格式转换
 input_file = 'input.wav'
 output_format = 'mp3'
-sp.core.audio_format_conversion(input_file, output_format)
+spx.core.audio_format_conversion(input_file, output_format)
 
 ```
 
 * 振荡器、滤波器、波形图
 
 ```python
-import SouPyX as sp
+import SouPyX as spx
 
 # 振荡器
-waveform = sp.synths.oscillator(freq=440, duration=1, type='triangle')
+waveform = spx.synths.oscillator(freq=440, duration=1, type='triangle')
 
 # 滤波器
 cutoff_freq = 2000
 fs=44100
 filter_type='lowpass'
-filtered_audio = sp.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
+filtered_audio = spx.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
 
 # 波形图
-sp.display.waveform(waveform)
-sp.display.waveform(filtered_audio)
+spx.display.waveform(waveform)
+spx.display.waveform(filtered_audio)
 
 print(waveform)
 print(filtered_audio)

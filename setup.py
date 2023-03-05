@@ -24,7 +24,7 @@
 """Install SouPyX."""
 
 __doc__ = """
-SouPy: An Audio Exploration Space.
+SouPyX: An Audio Exploration Space.
 See the README file for details, usage info, and a list of feature.
 """
 
@@ -33,9 +33,9 @@ import sys
 import setuptools
 
 # To enable importing version.py directly, we add its path to sys.path.
-version_path = os.path.join(os.path.dirname(__file__), 'SouPy')
+version_path = os.path.join(os.path.dirname(__file__), 'SouPyX')
 sys.path.append(version_path)
-from SouPy import __version__  
+from SouPyX import __version__  
 
 setuptools.setup(
     name='SouPyX',

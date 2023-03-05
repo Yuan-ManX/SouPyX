@@ -20,20 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import SouPy as sp
+import SouPyX as spx
 
 
 # oscillator
-waveform = sp.synths.oscillator(freq=440, duration=2, type='triangle')
+waveform = spx.synths.oscillator(freq=440, duration=2, type='triangle')
 
 cutoff_freq = 2000
 fs=44100
 filter_type='lowpass'
-filtered_audio = sp.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
+filtered_audio = spx.effects.filter(audio_data=waveform, fs=fs, filter_type=filter_type, cutoff_freq=cutoff_freq)
 
 # display
-sp.display.waveform(waveform)
-sp.display.waveform(filtered_audio)
+spx.display.waveform(waveform)
+spx.display.waveform(filtered_audio)
 
 print(waveform)
 print(filtered_audio)

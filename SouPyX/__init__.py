@@ -24,12 +24,12 @@
 """Base module for SouPy library."""
 
 # Module imports.
-from SouPy import core
-from SouPy import synths
-from SouPy import effects
-from SouPy import spatial
-from SouPy import display
-from SouPy import models
+from SouPyX import core
+from SouPyX import synths
+from SouPyX import effects
+from SouPyX import spatial
+from SouPyX import display
+from SouPyX import models
 
 # Version number.
-from SouPy.version import __version__
+from SouPyX.version import __version__
