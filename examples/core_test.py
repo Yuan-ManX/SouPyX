@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-import soupy as sp
+import SouPy as sp
 
 audio_file_path = 'audio_file.wav'
 sr, audio_data = sp.core.read(audio_file_path, sr=44100)
