@@ -38,7 +38,7 @@ sys.path.append(version_path)
 from SouPy import __version__  
 
 setuptools.setup(
-    name='SouPy',
+    name='SouPy1',
     version=__version__,
     description='Sound Python Library',
     author='Yuan Man',
