@@ -1,19 +1,19 @@
 <p align="center">
-  <img src="SouPy.png" alt="SouPy" style="display:block; margin:auto; transform: scale(1.0);" />
+  <img src="SouPyX.png" alt="SouPyX" style="display:block; margin:auto; transform: scale(1.0);" />
 </p>
 
-# SouPy (Sound Python): An Audio Exploration Space.🪐
+## SouPyX (Sound Python Explore): An Audio Exploration Space.🪐
 
-SouPy is a very colourful space for audio exploration, suitable for research and exploration in a variety of audio fields. In SouPy you can carry out research and exploration in audio processing, sound synthesis, audio effects, spatial audio, audio visualisation, AI audio and much more.
+SouPyX is a very colourful space for audio exploration, suitable for research and exploration in a variety of audio fields. In SouPyX you can carry out research and exploration in audio processing, sound synthesis, audio effects, spatial audio, audio visualisation, AI audio and much more.
 
 - [中文版](./README_CN.md)
 - [English](./README.md)
 
-SouPy provides a number of useful audio processing tools, including audio file reading and output, format conversion, MIDI conversion and more, to help developers work with audio data in a more flexible way. In addition, SouPy provides a range of sound synthesis methods such as oscillators, ADSR envelopes, additive synthesis, subtractive synthesis, wavetable synthesis, particle synthesis, physical modelling, etc., and also provides implementations of some common audio processing algorithms such as filters, equalisers, compressors, reverberation delays, etc. SouPy also provides a wealth of audio visualisation tools that can convert audio into visual images or animations, allowing developers to more intuitively understand the characteristics and structure of audio.
+SouPyX provides a number of useful audio processing tools, including audio file reading and output, format conversion, MIDI conversion and more, to help developers work with audio data in a more flexible way. In addition, SouPyX provides a range of sound synthesis methods such as oscillators, ADSR envelopes, additive synthesis, subtractive synthesis, wavetable synthesis, particle synthesis, physical modelling, etc., and also provides implementations of some common audio processing algorithms such as filters, equalisers, compressors, reverberation delays, etc. SouPyX also provides a wealth of audio visualisation tools that can convert audio into visual images or animations, allowing developers to more intuitively understand the characteristics and structure of audio.
 
-SouPy can also be used for research in areas such as AI audio music, by using neural network models for exploring applications in speech, music and sound effects. In addition, SouPy can be used for research in spatial audio and game development, such as simulating sound propagation and reflection in different environments, enabling spatial audio mixing, localisation, virtual environment creation, etc., bringing more flexible audio exploration tools to developers.
+SouPyX can also be used for research in areas such as AI audio music, by using neural network models for exploring applications in speech, music and sound effects. In addition, SouPyX can be used for research in spatial audio and game development, such as simulating sound propagation and reflection in different environments, enabling spatial audio mixing, localisation, virtual environment creation, etc., bringing more flexible audio exploration tools to developers.
 
-In summary, SouPy is a comprehensive and rich audio exploration platform for research and applications in a variety of audio domains. Whether you are an audio programmer, music producer, sound designer, AI audio researcher, game developer or audio enthusiast, you can find the right tools and resources in SouPy to carry out your own research and creation of interest and start your own audio exploration journey.
+In summary, SouPyX is a comprehensive and rich audio exploration platform for research and applications in a variety of audio domains. Whether you are an audio programmer, music producer, sound designer, AI audio researcher, game developer or audio enthusiast, you can find the right tools and resources in SouPyX to carry out your own research and creation of interest and start your own audio exploration journey.
 
 ## Installation
 
@@ -25,7 +25,7 @@ pip install SouPyX
 
 ## Quick Start
 
-First, follow the steps in the Installation section to install the SouPy package and its dependencies.
+First, follow the steps in the Installation section to install the SouPyX package and its dependencies.
 
 * Audio Processing
 
