@@ -69,12 +69,12 @@ print(filtered_audio)
 
 ## Feature List
 
-* Feature 1: [Core](./soupy/core.py) Audio processing functions, including audio file reading and output, audio format conversion, MIDI conversion, audio feature extraction, etc.
-* Feature 2: [Synths](./soupy/synths.py) Sound synthesis functions, including basic waveforms, oscillators, ADSR, additive synthesis, subtractive synthesis, wavetable synthesis, FM synthesis, AM synthesis, particle synthesis, physical modelling, musical instruments, etc.
-* Feature 3: [Effects](./soupy/effects.py) Audio effects functions, including filters, compressors, reverbs, delays, modulators, Doppler effects, flanger, chorus, modulation, etc.
-* Feature 4: [Spatial Audio](./soupy/spatial.py) Spatial audio functions, including stereo sound field enhancement algorithm, stereo separation algorithm, multichannel mixing algorithm, spatial audio encoding algorithm, spatial audio reduction algorithm, etc.
-* Feature 5: [Display](./soupy/display.py) Audio visualization function, including waveform graph, spectrum graph, sound spectrum graph, waterfall graph, 3D spectrum graph, etc.
-* Feature 6: [Models](./soupy/models.py) Audio models function, including Markov models, Hidden Markov Models (HMM), Recurrent Neural Networks (RNN), Variational Autoencoders (VAE), Generative Adversarial Networks (GAN), etc.
+* Feature 1: [Core](./SouPyX/core.py) Audio processing functions, including audio file reading and output, audio format conversion, MIDI conversion, audio feature extraction, etc.
+* Feature 2: [Synths](./SouPyX/synths.py) Sound synthesis functions, including basic waveforms, oscillators, ADSR, additive synthesis, subtractive synthesis, wavetable synthesis, FM synthesis, AM synthesis, particle synthesis, physical modelling, musical instruments, etc.
+* Feature 3: [Effects](./SouPyX/effects.py) Audio effects functions, including filters, compressors, reverbs, delays, modulators, Doppler effects, flanger, chorus, modulation, etc.
+* Feature 4: [Spatial Audio](./SouPyX/spatial.py) Spatial audio functions, including stereo sound field enhancement algorithm, stereo separation algorithm, multichannel mixing algorithm, spatial audio encoding algorithm, spatial audio reduction algorithm, etc.
+* Feature 5: [Display](./SouPyX/display.py) Audio visualization function, including waveform graph, spectrum graph, sound spectrum graph, waterfall graph, 3D spectrum graph, etc.
+* Feature 6: [Models](./SouPyX/models.py) Audio models function, including Markov models, Hidden Markov Models (HMM), Recurrent Neural Networks (RNN), Variational Autoencoders (VAE), Generative Adversarial Networks (GAN), etc.
 * Feature 7: More new features are in development！
 
 ## Contribution Guide
