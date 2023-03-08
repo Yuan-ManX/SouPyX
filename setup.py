@@ -53,7 +53,8 @@ setuptools.setup(
         'sklearn',
         'torch',
         'matplotlib',
-        'mido'
+        'mido',
+        'h5py'
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

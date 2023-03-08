@@ -66,12 +66,37 @@ print(filtered_audio)
 
 ```
 
+* SOFA格式
+
+```python
+import SouPyX as spx
+
+# 实例化SOFA类并加载SOFA文件
+sofa = spx.spatial.SOFA('HRTF.sofa')
+
+# 获取采样频率
+sampling_rate = sofa.get_sampling_rate()
+
+# 获取第1个声源的脉冲响应数据
+ir = sofa.get_ir(1)
+
+# 获取第1个声源的位置
+source_pos = sofa.get_source_position(1)
+
+# 获取监听者的方向向量
+listener_orientation = sofa.get_listener_orientation()
+
+# 关闭SOFA文件
+sofa.close()
+
+```
+
 ## 功能列表
 
 * 功能一：[Core](./SouPyX/core.py)  音频处理部分，包括了音频文件的读取输出、音频格式转换、MIDI转换、音频特征提取等。
 * 功能二：[Synths](./SouPyX/synths.py)  声音合成部分，包括了基础波形、振荡器、ADSR、加法合成、减法合成、波表合成、FM合成、AM合成、粒子合成、物理建模、乐器等。
 * 功能三：[Effects](./SouPyX/effects.py)  音频效果部分，包括了滤波器、压缩器、混响器、延时器、变调器、多普勒效果器、镶边、合唱、调制等。
-* 功能四：[Spatial Audio](./SouPyX/spatial.py)  空间音频部分，包括了立体声声场增强算法、立体声分离算法、多声道混音算法、空间音频编码算法、空间音频还原算法等。
+* 功能四：[Spatial Audio](./SouPyX/spatial.py)  空间音频部分，包括了立体声声场增强算法、立体声分离算法、多声道混音算法、空间音频编码算法、空间音频还原算法、SOFA音频格式处理等。
 * 功能五：[Display](./SouPyX/display.py)  音频可视化部分，包括了波形图、频谱图、声谱图、瀑布图、三维频谱图等。
 * 功能六：[Models](./SouPyX/models.py)  音频模型部分，包括了Markov模型、隐马尔可夫模型（HMM）、循环神经网络（RNN）、变分自动编码器（VAE）、生成对抗网络（GAN）等。
 * 功能七：更多新功能正在开发中！

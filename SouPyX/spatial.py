@@ -26,6 +26,7 @@ from scipy.io import wavfile
 from sklearn.decomposition import FastICA
 import torch
 import torch.nn as nn
+import h5py
 
 
 #------------------ Stereo sound field enhancement algorithm -------------------
@@ -253,6 +254,198 @@ def spatial_audio_decoding(encoded_audio, transform_matrix):
 
     decoded_audio = np.matmul(encoded_audio, np.transpose(transform_matrix))
     return decoded_audio
+
+
+#------------------ SOFA（Spatially Oriented Format for Acoustics） --------------------
+
+class SOFA:
+
+    def __init__(self, filename):
+        """
+        Initialize the SOFA class object and load the data from the SOFA file.
+
+        Args:
+        filename: the filename of the SOFA file
+        """
+        self.file = h5py.File(filename, 'r')
+
+        # Check if the file format is SOFA
+        if 'SOFA' not in self.file.attrs:
+            raise ValueError(f"{filename} is not a SOFA file.")
+
+        # Read global attribute data
+        self.API = self.file['/API'][()].decode('UTF-8')
+        self.Version = self.file['/Version'][()].decode('UTF-8')
+        self.SOFAConventions = self.file['/SOFAConventions'][()].decode('UTF-8')
+        self.SOFAConventionsVersion = self.file['/SOFAConventionsVersion'][()].decode('UTF-8')
+
+        # Read metadata attribute data
+        self.DataDelay = self.file['/Data.Delay'][()]
+        self.DataSamplingRate = self.file['/Data.SamplingRate'][()]
+        self.DataIR = self.file['/Data.IR'][()]
+
+        # Read coordinate attribute data
+        self.ListenerPosition = self.file['/ListenerPosition'][()]
+        self.ListenerUp = self.file['/ListenerUp'][()]
+        self.ListenerView = self.file['/ListenerView'][()]
+        self.ListenerPositionType = self.file['/ListenerPositionType'][()].decode('UTF-8')
+
+        self.SourcePosition = self.file['/SourcePosition'][()]
+        self.SourceUp = self.file['/SourceUp'][()]
+        self.SourceView = self.file['/SourceView'][()]
+        self.SourcePositionType = self.file['/SourcePositionType'][()].decode('UTF-8')
+
+        # Read global variable attribute data
+        self.GLOBAL_ListenerShortName = self.file['/GLOBAL_ListenerShortName'][()].decode('UTF-8')
+        self.GLOBAL_SourceShortName = self.file['/GLOBAL_SourceShortName'][()].decode('UTF-8')
+
+    def get_ir(self, index):
+        """
+        Get the impulse response of the sound source with index.
+
+        Args:
+        index: the index of the sound source (starting from 0)
+        Returns:
+        the impulse response data
+        """
+        return np.array(self.DataIR[index], dtype=float)
+
+    def get_delay(self, index):
+        """
+        Get the delay time of the sound source with index.
+
+        Args: 
+        index: the index of the sound source (starting from 0)
+        Returns:
+        the delay time in seconds
+        """
+        return self.DataDelay[index]
+
+    def get_sampling_rate(self):
+        """
+        Get the sampling rate.
+
+        Returns:
+        the sampling rate in Hz
+        """
+        return self.DataSamplingRate
+
+    def get_listener_position(self):
+        """
+        Get the position of the listener.
+
+        Returns:
+        the position of the listener
+        """
+        return self.ListenerPosition
+
+    def get_source_position(self, index):
+        """
+        Get the position of the sound source with index.
+
+        Args:
+        index: the index of the sound source (starting from 0)
+        Returns:
+        the position of the sound source
+        """
+        return self.SourcePosition[index]
+
+    def get_source_count(self):
+        """
+        Get the number of sound sources.
+
+        Returns:
+        the number of sound sources
+        """
+        return len(self.SourcePosition)
+
+    def get_listener_orientation(self):
+        """
+        Get the orientation of the listener.
+
+        Returns:
+        the direction vector of the listener
+        """
+        return {
+            "up": self.ListenerUp,
+            "view": self.ListenerView
+        }
+
+    def get_source_orientation(self, index):
+        """
+        Get the orientation of the source at the specified index.
+
+        Args:
+        index: Index of the source (starting from 0).
+        Returns:
+        Orientation vector of the source.
+        """
+        return {
+            "up": self.SourceUp[index],
+            "view": self.SourceView[index]
+        }
+
+    def get_api(self):
+        """
+        Get the API version.
+
+        Returns:
+        API version.
+        """
+        return self.API
+
+    def get_version(self):
+        """
+        Get the SOFA file version.
+
+        Returns:
+        SOFA file version.
+        """
+        return self.Version
+
+    def get_conventions(self):
+        """
+        Get the SOFA protocol version.
+
+        Returns:
+        SOFA protocol version.
+        """
+        return self.SOFAConventions
+
+    def get_conventions_version(self):
+        """
+        Get the SOFA protocol version number.
+
+        Returns:
+        SOFA protocol version number.
+        """
+        return self.SOFAConventionsVersion
+
+    def get_listener_position_type(self):
+        """
+        Get the type of listener position.
+
+        Returns:
+        Type of listener position.
+        """
+        return self.ListenerPositionType
+
+    def get_source_position_type(self):
+        """
+        Get the type of source position.
+
+        Returns:
+        Type of source position.
+        """
+        return self.SourcePositionType
+
+    def close(self):
+        """
+        Close the file.
+        """
+        self.file.close()
+
+
 
 
 
