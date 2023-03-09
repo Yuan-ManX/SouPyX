@@ -29,6 +29,7 @@ from scipy.io.wavfile import write
 import mido
 import os
 import subprocess
+import random
 
 
 #------------------ Utility Functions ------------------------------------------
@@ -180,6 +181,80 @@ def audio_to_midi(audio_data, fs=44100):
 
     # Save MIDI file
     midi_file.save('audio_to_midi.mid')
+
+
+
+class MidiGenerator:
+    def __init__(self, key='C', scale='major'):
+        """
+        Initialize the MidiGenerator object with the specified key and scale.
+
+        Args:
+        key: the key of the scale, e.g., 'C', 'D#', etc. Default is 'C'.
+        scale: the scale, either 'major' or 'minor'. Default is 'major'.
+        """
+        self.key = key
+        self.scale = scale
+        self.scale_degrees = self.get_scale_degrees()
+        
+    def get_scale_degrees(self):
+        """
+        Get the degrees of the specified scale.
+
+        Returns:
+        a list of degrees in the scale.
+        """
+        # Define the degrees of the scale.
+        if self.scale == 'major':
+            degrees = [0, 2, 4, 5, 7, 9, 11]
+        elif self.scale == 'minor':
+            degrees = [0, 2, 3, 5, 7, 8, 10]
+        else:
+            raise ValueError('Unknown scale:', self.scale)
+
+        # Convert the degrees to the degrees of the specified key.
+        key_index = mido.note_name_to_number(self.key)
+        scale_degrees = [(degree + key_index) % 12 for degree in degrees]
+        return scale_degrees
+
+    def generate_random_midi_data(self, num_notes=16, velocity=64):
+        """
+        Generate a random sequence of MIDI notes in the specified key and scale.
+
+        Args:
+        num_notes: the number of notes to generate. Default is 16.
+        velocity: the velocity of the notes. Default is 64.
+        Returns:
+        a MidiFile object containing the generated MIDI notes.
+        """
+        # Create a MIDI file and add a track.
+        midi = mido.MidiFile()
+        track = mido.MidiTrack()
+        midi.tracks.append(track)
+
+        # Generate random notes.
+        time = 0
+        for i in range(num_notes):
+            # Choose a random note from the scale.
+            note = random.choice(self.scale_degrees)
+
+            # Choose a random pitch and duration.
+            pitch = random.randint(40, 80)
+            duration = random.randint(4, 8)
+
+            # Create note_on and note_off messages.
+            note_on = mido.Message('note_on', note=note, velocity=velocity, time=time)
+            note_off = mido.Message('note_off', note=note, velocity=velocity, time=time+duration)
+
+            # Add the messages to the track.
+            track.append(note_on)
+            track.append(note_off)
+
+            # Update the time.
+            time += duration
+
+        # Return the MIDI data.
+        return midi
 
 
 #------------------ Audio Conversions ------------------------------------------
