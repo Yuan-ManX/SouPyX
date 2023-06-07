@@ -50,7 +50,7 @@ setuptools.setup(
     install_requires=[
         'numpy',
         'scipy',
-        'sklearn',
+        'scikit-learn',
         'torch',
         'matplotlib',
         'mido',
