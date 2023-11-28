@@ -36,7 +36,7 @@ import random
 
 def read(audio_file, sr=None):
     """
-    Read mono audio file.
+    Read audio file.
 
     Args:
     audio_file (str): Path of audio file to read.
@@ -56,8 +56,8 @@ def read(audio_file, sr=None):
         raise ValueError(f"Unsupported audio file format: {file_ext}")
 
     # If the sampling rate is specified, resample the audio signal
-    if sr is not None and sr != audio_signal.shape[0]:
-        audio_signal = signal.resample(audio_signal, sr, audio_signal.shape[0])
+    if sr is not None and sr != audio_signal.size:
+        audio_signal = signal.resample(audio_signal, int(sr * audio_signal.size / sr))
 
     # If the audio is stereo, convert to mono
     if len(audio_signal.shape) > 1:
@@ -66,9 +66,9 @@ def read(audio_file, sr=None):
     return sr, audio_signal
 
 
-def write(audio_signal, audio_file, sr=44100):
+def write(audio_file, audio_signal, sr=44100):
     """
-    Write mono audio signal to audio file.
+    Write audio signal to audio file.
 
     Args:
     audio_signal (ndarray): Audio signal to write with shape (N,), where N is number of samples.
@@ -83,31 +83,27 @@ def write(audio_signal, audio_file, sr=44100):
 
     # Call different write functions depending on the file extension
     if file_ext == 'wav':
-        write(audio_file, sr, audio_signal.astype(np.int16))
-    elif file_ext == 'flac':
-        flac.write(audio_file, sr, audio_signal.astype(np.int16))
-    elif file_ext == 'ogg':
-        ogg.write(audio_file, sr, audio_signal.astype(np.int16))
+        wavfile.write(audio_file, sr, audio_signal.astype(np.int16))
     else:
         raise ValueError(f"Unsupported audio file format: {file_ext}")
 
 
 #------------------ MIDI -------------------------------------------------------
 
-def midi_to_audio(midi_data, fs=44100, duration=5):
+def midi_to_audio(audio_file, midi_data, sr=44100, duration=5):
     """
     Convert MIDI data to audio signal and save as a .wav file.
 
     Args:
     midi_data (numpy.ndarray): 2D array containing the MIDI data, with each row representing a note, including start time, end time, pitch, velocity, etc.
-    fs (int): Audio sampling rate, default is 44100Hz.
+    sr (int): Audio sampling rate, default is 44100Hz.
     duration (float): Duration of the audio, default is 5 seconds.
 
     Returns:
     None
     """
     # Set synthesizer parameters
-    n_samples = int(fs * duration)
+    n_samples = int(sr * duration)
     t = np.linspace(0, duration, n_samples, False)
     audio = np.zeros(n_samples)
 
@@ -116,24 +112,24 @@ def midi_to_audio(midi_data, fs=44100, duration=5):
         start, end, pitch, velocity = note
         frequency = 2 ** ((pitch - 69) / 12) * 440
         waveform = velocity * np.sin(2 * np.pi * frequency * t)
-        start_sample = int(start * fs)
-        end_sample = min(int(end * fs), n_samples)
+        start_sample = int(start * sr)
+        end_sample = min(int(end * sr), n_samples)
         audio[start_sample:end_sample] += waveform[:end_sample - start_sample]
 
     # Normalize audio signal
     audio /= np.max(np.abs(audio))
 
     # Save audio as .wav file
-    write('midi_to_audio.wav', fs, audio)
+    write(audio_file, sr, audio)
 
 
-def audio_to_midi(audio_data, fs=44100):
+def audio_to_midi(midi_file, audio_data, sr=44100):
     """
     Convert audio data to MIDI data and save as MIDI file.
 
     Args:
     audio_data (numpy.ndarray): One-dimensional or two-dimensional array containing audio data. One dimension represents mono audio, and two dimensions represent stereo audio. The value range is [-1, 1].
-    fs (int): Audio sample rate, default is 44100Hz.
+    sr (int): Audio sample rate, default is 44100Hz.
 
     Returns:
     None
@@ -159,15 +155,15 @@ def audio_to_midi(audio_data, fs=44100):
             note_offsets.append(i)
 
     # Create MIDI file
-    midi_file = mido.MidiFile(type=1)
+    midi = mido.MidiFile(type=1)
 
     # Create MIDI track
     track = mido.MidiTrack()
 
     # Add note messages to MIDI track
     for i in range(len(note_onsets)):
-        note_start = note_onsets[i] / fs
-        note_end = note_offsets[i] / fs
+        note_start = note_onsets[i] / sr
+        note_end = note_offsets[i] / sr
         note_duration = note_end - note_start
         note_pitch = int(np.random.uniform(60, 80))
         note_velocity = int(np.random.uniform(80, 100))
@@ -177,10 +173,10 @@ def audio_to_midi(audio_data, fs=44100):
         track.append(note_off_message)
 
     # Add track to MIDI file
-    midi_file.tracks.append(track)
+    midi.tracks.append(track)
 
     # Save MIDI file
-    midi_file.save('audio_to_midi.mid')
+    midi.save(midi_file)
 
 
 
