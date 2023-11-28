@@ -21,7 +21,7 @@
 # SOFTWARE.
 
 
-"""Base module for SouPy library."""
+"""Base module for SouPyX library."""
 
 # Module imports.
 from SouPyX import core
